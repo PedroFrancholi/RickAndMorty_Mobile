@@ -1,0 +1,22 @@
+const [press,setPress] = useState()
+
+const onPressLoginButton = () =>{
+        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+
+        if(emailValid.test(email)) {
+            if ((password.length) < 8) {
+
+                Vibration.vibrate()
+                setErrorEmail('')
+                setErrorPassword('Invalid Password')
+            }else{
+                setErrorEmail('')
+                setErrorPassword('')
+                setPress(() => navigation.navigate('Home'))
+                //colocar a função para chamar a tela de HOME
+
+            }
+        } else {
+
+
+ <TouchableOpacity onPress={press}>

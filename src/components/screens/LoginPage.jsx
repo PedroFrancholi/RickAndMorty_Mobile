@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Alert, Button, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
+import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
 
-const LoginPage = () => {
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+const LoginPage = ({navigation}) => {
+    const [email,setEmail] = useState('rickAndMorty@gmail.com')
+    const [password,setPassword] = useState('123456789')
     const [errorEmail,setErrorEmail] = useState('')
     const [errorPassword,setErrorPassword] = useState('')
 
@@ -15,21 +15,21 @@ const LoginPage = () => {
     }
     
     const onPressLoginButton = () =>{
-        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-        if (emailValid.test(email)) {
-            if (!(password.length >= 8)) {
+        if(emailValid.test(email)) {
+            if ((password.length) < 8) {
+
                 Vibration.vibrate()
                 setErrorEmail('')
                 setErrorPassword('Invalid Password')
             }else{
                 setErrorEmail('')
                 setErrorPassword('')
-                //colocar a função para chamar a tela de HOME
-
+                navigation.navigate('Teste')
             }
         } else {
-            if (!(password.length >= 8)) {
+            if ((password.length) < 8) {
                 Vibration.vibrate()
                 setErrorEmail('Invalid Email')
                 setErrorPassword('Invalid Password')
@@ -44,10 +44,14 @@ const LoginPage = () => {
     return (
         <SafeAreaView style={{backgroundColor:'#000'}}>
             <View style={styles.body}>
-                <Text style={styles.textLogin}>LOGIN</Text>
+                
+                <Text style={styles.textLogin}>
+                    <Text style={{color:'#64dded'}}>RICKY</Text>
+                    <Text style={{color:'#e8387e'}}> & </Text>
+                    <Text style={{color:'#dcf285'}}>MORTY</Text></Text>
                 <Image source={require('../image/rickandmorty.png')} style={styles.image}/>
                 <View style={styles.boxInput}>  
-                    <Text style={styles.text}>Enter your e-mail:    <Text style={{color:"#F00"}}>{errorEmail}</Text></Text>
+                    <Text style={styles.text}>Enter your e-mail:    <Text style={styles.textError}>{errorEmail}</Text></Text>
                     <TextInput
                     style={styles.input}
                     onChangeText={setEmail}
@@ -58,7 +62,7 @@ const LoginPage = () => {
                 </View>
 
                 <View style={styles.boxInput}>
-                    <Text style={styles.text}>Password:    <Text style={{color:"#F00"}}>{errorPassword}</Text></Text>
+                    <Text style={styles.text}>Password:    <Text style={styles.textError}>{errorPassword}</Text></Text>
                     <TextInput
                     style={styles.input}
                     onChangeText={setPassword}
@@ -91,11 +95,18 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
     },
+    textError:{
+        color:'#F00',
+        fontSize:12,
+        textShadowColor: 'rgba(255, 255, 255, 0.3)',
+        textShadowOffset: { width: 0.5, height: 0.5 },
+        textShadowRadius: 5
+    },
     textLogin:{
         color:'#FFF',
         fontSize:40,
         marginBottom:10,
-        textShadowColor: 'rgba(0, 0, 0, 5)',
+        textShadowColor: 'rgba(0, 0, 0, 0.8)',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 5
     },
@@ -122,8 +133,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:16,
         color:'#fff',
-        textShadowColor: 'rgba(0, 0, 0, 5)',
-        textShadowOffset: { width: 2, height: 2 },
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1.5, height: 1.5 },
         textShadowRadius: 5
     },
     boxButton:{
@@ -132,7 +143,7 @@ const styles = StyleSheet.create({
     },
     button:{
         backgroundColor:'#9ad6d6',
-        borderWidth:1,
+        borderWidth:1.6,
         borderColor:"#000",
         borderRadius:25,
         justifyContent:'center',
@@ -144,8 +155,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:20,
         color:'#FFF',
-        textShadowColor: 'rgba(0, 0, 0, 5)',
-        textShadowOffset: { width: 2, height: 2 },
+        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+        textShadowOffset: { width: 1.2, height: 1.2 },
         textShadowRadius: 5
     }
 })
