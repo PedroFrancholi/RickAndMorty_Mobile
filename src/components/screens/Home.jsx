@@ -1,25 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from "react-native";
 
-const ReturnValue = ({content}) =>{
-    const {id,name,status,image} = content
-    return(
-        <TouchableOpacity style={styles.boxBody}>
-            <Text style={{color:'#000'}}>ID: {id}</Text>
-            <Text style={{color:'#000'}}>Name: {name}</Text>
-            <Text style={{color:'#000'}}>Status: {status}</Text>
-            <Image source={{uri: image}} style={styles.image}/>
-        </TouchableOpacity>
-    )
-}
+const Home = ({navigation}) => {
+    const [rickMorty,setRickMorty] = useState()
 
-const Home = () => {
-    const [rickMorty,setRickMorty] = useState([])
     const fetchRickMorty = async () =>{
-    
         try{
-            const {data} = await axios.get("https://rickandmortyapi.com/api/character")
+            const {data} = await axios.get(`https://rickandmortyapi.com/api/character`)
             setRickMorty(data.results)
         }catch(error){
             console.error(error)
@@ -29,20 +17,40 @@ const Home = () => {
     useEffect(()=>{
         fetchRickMorty()
     },[])
+
+    const ReturnValue = ({content}) =>{
+        const {id,name,status,image} = content;
     
+        const navigationCharacteres = () => {
+            navigation.navigate('Characteres', {id: id})
+        }
+
+        return(
+            <TouchableOpacity style={styles.boxBody} onPress={() => navigationCharacteres(content)}>
+                <View style={styles.boxBodyInternal}>
     
+                <View style={styles.boxText}>
+                    <Text style={{color:'#000'}}>ID: {id}</Text>
+                    <Text style={{color:'#000'}}>Name: {name}</Text>
+                    <Text style={{color:'#000',paddingBottom:20}}>Status: {status}</Text>
+                </View>
+                <Image source={{uri: image}} style={styles.image}/>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 
     return (
-        <SafeAreaView style={{backgroundColor:'#000'}}>
-            
-            <View style={styles.card}>
+        <SafeAreaView style={{backgroundColor:'#24414f'}}>
             <View style={styles.body}>
+                <Text style={styles.textTitle}>{`SELECT ONE CHARACTER
+    TO VIEW THE DETAILS`}
+                </Text>
                 <FlatList
                 data={rickMorty}
                 renderItem={({item}) => <ReturnValue content={item}/>}
                 keyExtractor={(item) => item.id.toString()}
                 />
-            </View>
             </View>
         </SafeAreaView>
     );
@@ -52,20 +60,45 @@ const styles = StyleSheet.create({
     body:{
         height:'100%',
         backgroundColor:"#4a85a1",
+        alignItems:'center',
         justifyContent:'center',
         gap:10
+    },
+    textTitle:{
+        paddingTop:10,
+        color:'#FFF',
+        fontSize:30,
+        fontWeight:'bold',
+        alignItems:'center',
+        textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 5
     },
     image:{
         height:80,
         resizeMode:'contain'
     },
+    boxText:{
+        alignItems:'center',
+    },
+    text:{
+        color:'#000'
+    },
     boxBody:{
-        height:160,
-        marginBottom:15,
-        backgroundColor:"#dcf285",
-        // alignItems:'center',
-        justifyContent:'center'
+        flex:0,
+        height:200,
+        width:400,
+        marginVertical:5,
+        backgroundColor:"#4a85a1",
+        justifyContent:'center',
+        flexDirection:'row'
 
+    },
+    boxBodyInternal:{
+        justifyContent:'center',
+        width:250,
+        backgroundColor:'#dcf285',
+        borderRadius:20,
     }
 })
 export default Home;

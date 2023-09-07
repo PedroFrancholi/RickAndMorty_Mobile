@@ -26,7 +26,7 @@ const LoginPage = ({navigation}) => {
             }else{
                 setErrorEmail('')
                 setErrorPassword('')
-                navigation.navigate('Teste')
+                navigation.navigate('Home')
             }
         } else {
             if ((password.length) < 8) {
@@ -42,7 +42,7 @@ const LoginPage = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView style={{backgroundColor:'#000'}}>
+        <SafeAreaView style={{backgroundColor:'#24414f'}}>
             <View style={styles.body}>
                 
                 <Text style={styles.textLogin}>
