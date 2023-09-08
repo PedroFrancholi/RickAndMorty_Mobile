@@ -73,16 +73,21 @@ const LoginPage = ({navigation}) => {
                 </View>
                 <View style={styles.boxButton}>
                     <TouchableOpacity onPress={onPressLoginButton}>
-                        <View style={styles.button}>
-                            <Text style={styles.textButton}>Login</Text>
+                        <View style={styles.buttonLogin}>
+                            <Text style={styles.textButtonLogin}>Login</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={onPressClearButton}>
-                        <View style={styles.button}>
-                            <Text style={styles.textButton}>Clear</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                        <View style={styles.buttonRegister}>
+                            <Text style={styles.textButtonRegister}>Register</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+                    <TouchableOpacity onPress={onPressClearButton}>
+                        <View style={styles.buttonClear}>
+                            <Text style={styles.textButtonClear}>Clear</Text>
+                        </View>
+                    </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -119,6 +124,7 @@ const styles = StyleSheet.create({
     input:{
         borderWidth:2,
         borderRadius:10,
+        borderColor:'#24414f',
         backgroundColor:"#dcf285",
         height:40,
         width:300,
@@ -141,24 +147,61 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         gap:30
     },
-    button:{
-        backgroundColor:'#9ad6d6',
+    buttonLogin:{
+        backgroundColor:'#24414f',
         borderWidth:1.6,
-        borderColor:"#000",
+        borderColor:"#dcf285",
         borderRadius:25,
         justifyContent:'center',
         alignItems:'center',
         width:110,
         height:34
     },
-    textButton:{
+    buttonRegister:{
+        backgroundColor:'#e8387e',
+        borderWidth:1.6,
+        borderColor:"#FFF",
+        borderRadius:25,
+        justifyContent:'center',
+        alignItems:'center',
+        width:110,
+        height:34,
+    },
+    buttonClear:{
+        backgroundColor:'#9ad6d6',
+        borderWidth:1.6,
+        borderColor:"#24414f",
+        borderRadius:25,
+        justifyContent:'center',
+        alignItems:'center',
+        width:110,
+        height:34,
+        marginTop:10
+    },
+    textButtonLogin:{
+        fontWeight:'bold',
+        fontSize:20,
+        color:'#dcf285',
+        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+        textShadowOffset: { width: 1.2, height: 1.2 },
+        textShadowRadius: 5,
+    },
+    textButtonRegister:{
         fontWeight:'bold',
         fontSize:20,
         color:'#FFF',
         textShadowColor: 'rgba(0, 0, 0, 0.6)',
         textShadowOffset: { width: 1.2, height: 1.2 },
-        textShadowRadius: 5
-    }
+        textShadowRadius: 5,
+    },
+    textButtonClear:{
+        fontWeight:'bold',
+        fontSize:20,
+        color:'#24414f',
+        textShadowColor: 'rgba(255, 255, 255, 0.6)',
+        textShadowOffset: { width: 1.2, height: 1.2 },
+        textShadowRadius: 5,
+    },
 })
 
 export default LoginPage;

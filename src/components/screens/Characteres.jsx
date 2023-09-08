@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-native";
 import { SafeAreaView, View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-const Characteres = ({ route,navigation }) => {
+const Characteres = ({ route }) => {
   const [characteres, setCharacteres] = useState(null);
   const {id} = route.params;
 
@@ -24,25 +24,21 @@ const Characteres = ({ route,navigation }) => {
   return (
     <SafeAreaView style={{backgroundColor:'#24414f'}}>
       {characteres && (
-        <>
           <View style={styles.boxGeral}>
             <View style={styles.boxContainer}>
-                <TouchableOpacity style={styles.boxText}>
-                    <Text style={styles.textTitle}>{characteres.name}</Text>
-                </TouchableOpacity>
-
-                <Image source={{uri: characteres.image}} style={styles.image}/>
-            <TouchableOpacity style={styles.boxText}> 
-                <Text style={styles.text}>Id: {characteres.id}</Text>
-                <Text style={styles.text}>Status: {characteres.status}</Text>
-                <Text style={styles.text}>Gender: {characteres.gender}</Text>
-                <Text style={styles.text}>Created Date: {characteres.created}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.boxText}>
+                  <Text style={styles.textTitle}>{characteres.name}</Text>
+              </TouchableOpacity>
+              <Image source={{uri: characteres.image}} style={styles.image}/>
+              <TouchableOpacity style={styles.boxText}> 
+                  <Text style={styles.text}>Id: {characteres.id}</Text>
+                  <Text style={styles.text}>Status: {characteres.status}</Text>
+                  <Text style={styles.text}>Gender: {characteres.gender}</Text>
+                  <Text style={styles.text}>Created Date: {characteres.created}</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </>
       )}
-      
     </SafeAreaView>
   );
 };
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
         color:'#FFF',
         fontWeight:'bold',
         fontSize:16,
-        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+        textShadowColor: 'rgba(36, 65, 79, 0.6)',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 5
     },
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
         color:'#dcf285',
         fontWeight:'bold',
         fontSize:26,
-        textShadowColor: 'rgba(0, 0, 0, 0.8)',
+        textShadowColor: 'rgba(36, 65, 79, 0.8)',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 5
     }

@@ -6,6 +6,7 @@ import Home from "./src/components/screens/Home";
 import LoginPage from "./src/components/screens/LoginPage";
 import Characteres from "./src/components/screens/Characteres";
 import Account from "./src/components/screens/Account";
+import Register from "./src/components/screens/Register";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -87,8 +88,16 @@ export default function App() {
             backgroundColor:'#4a85a1',
             borderBottomColor:'#dcf285',
             borderBottomWidth:1
-          },
-        }}/>
+          }
+        }}/
+        >
+          <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ 
+            headerShown: false
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

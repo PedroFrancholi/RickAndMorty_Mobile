@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         color:'#dcf285',
         fontWeight:'bold',
         fontSize:26,
-        textShadowColor: 'rgba(0, 0, 0, 0.8)',
+        textShadowColor: 'rgba(36, 65, 79, 0.8)',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 5
     },
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         color:'#FFF',
         fontWeight:'bold',
         fontSize:26,
-        textShadowColor: 'rgba(0, 0, 0, 0.8)',
+        textShadowColor: 'rgba(36, 65, 79, 0.8)',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 5
     }

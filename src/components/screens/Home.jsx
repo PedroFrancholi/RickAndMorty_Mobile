@@ -30,9 +30,9 @@ const Home = ({navigation}) => {
                 <View style={styles.boxBodyInternal}>
     
                 <View style={styles.boxText}>
-                    <Text style={{color:'#000'}}>ID: {id}</Text>
-                    <Text style={{color:'#000'}}>Name: {name}</Text>
-                    <Text style={{color:'#000',paddingBottom:20}}>Status: {status}</Text>
+                    <Text style={styles.text}>ID: {id}</Text>
+                    <Text style={styles.text}>Name: {name}</Text>
+                    <Text style={styles.text}>Status: {status}</Text>
                 </View>
                 <Image source={{uri: image}} style={styles.image}/>
                 </View>
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 5
     },
     image:{
+        marginTop:10,
         height:80,
         resizeMode:'contain'
     },
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     text:{
-        color:'#000'
+        color:'#24414f',
+        fontSize:14
     },
     boxBody:{
         flex:0,
