@@ -28,7 +28,6 @@ const Home = ({navigation}) => {
         return(
             <TouchableOpacity style={styles.boxBody} onPress={() => navigationCharacteres(content)}>
                 <View style={styles.boxBodyInternal}>
-    
                 <View style={styles.boxText}>
                     <Text style={styles.text}>ID: {id}</Text>
                     <Text style={styles.text}>Name: {name}</Text>

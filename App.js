@@ -22,9 +22,8 @@ function TabNavigator() {
         tabBarLabelStyle:{
           color:'#FFF'
         },
-        
       }}
-    >
+      >
       <Tab.Screen 
         name="HomePage"
         component={Home}   
@@ -47,15 +46,6 @@ function TabNavigator() {
           ),
         }}
         />
-        {/* <Tab.Screen 
-        name="Characteres"
-        component={Characteres}
-        options={{
-          headerShown:false,
-          tabBarIcon: () =>(
-            <MaterialCommunityIcons name="account" color={'#FFF'} size={30} />
-          )
-        }}/> */}
     </Tab.Navigator>
   );
 }
@@ -80,23 +70,23 @@ export default function App() {
           }}
         />
         <Stack.Screen
-        name="Characteres"
-        component={Characteres}
-        options={{
-          headerTintColor:'#dcf285',
-          headerStyle:{
-            backgroundColor:'#4a85a1',
-            borderBottomColor:'#dcf285',
-            borderBottomWidth:1
+          name="Characteres"
+          component={Characteres}
+          options={{
+            headerTintColor:'#dcf285',
+            headerStyle:{
+              backgroundColor:'#4a85a1',
+              borderBottomColor:'#dcf285',
+              borderBottomWidth:1
           }
-        }}/
-        >
+        }}
+        />
           <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{ 
-            headerShown: false
-          }}
+            name="Register"
+            component={Register}
+            options={{ 
+              headerShown: false
+            }}
         />
       </Stack.Navigator>
     </NavigationContainer>

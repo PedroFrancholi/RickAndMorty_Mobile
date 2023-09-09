@@ -2,8 +2,8 @@ import { useState } from "react";
 import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
 
 const LoginPage = ({navigation}) => {
-    const [email,setEmail] = useState('rickAndMorty@gmail.com')
-    const [password,setPassword] = useState('123456789')
+    const [email,setEmail] = useState('rickandmorty@gmail.com')
+    const [password,setPassword] = useState('12345678')
     const [errorEmail,setErrorEmail] = useState('')
     const [errorPassword,setErrorPassword] = useState('')
 
@@ -19,7 +19,6 @@ const LoginPage = ({navigation}) => {
 
         if(emailValid.test(email)) {
             if ((password.length) < 8) {
-
                 Vibration.vibrate()
                 setErrorEmail('')
                 setErrorPassword('Invalid Password')
