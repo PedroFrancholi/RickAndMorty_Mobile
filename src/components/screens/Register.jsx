@@ -32,6 +32,7 @@ const Register = ({navigation}) => {
             setValidName(true)
             setErrorName('')
         }else{
+            Vibration.vibrate()
             setValidName(false)
             setErrorName('Invalid Name')
         }

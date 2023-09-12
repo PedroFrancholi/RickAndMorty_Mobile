@@ -2,8 +2,8 @@ import { useState } from "react";
 import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
 
 const LoginPage = ({navigation}) => {
-    const [email,setEmail] = useState('rickandmorty@gmail.com')
-    const [password,setPassword] = useState('12345678')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
     const [errorEmail,setErrorEmail] = useState('')
     const [errorPassword,setErrorPassword] = useState('')
 
