@@ -1,19 +1,37 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from "react-native";
+import { ActivityIndicator, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from "react-native";
 
 const Home = ({navigation}) => {
-    const [rickMorty,setRickMorty] = useState()
+    const [rickMorty,setRickMorty] = useState([])
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const characterPerPage = 3
 
     const fetchRickMorty = async () =>{
         try{
+            setLoading(true);
             const {data} = await axios.get(`https://rickandmortyapi.com/api/character`)
-            setRickMorty(data.results)
+            const newData = data.results
+            // setRickMorty(data.results)
+            setRickMorty([...rickMorty, ...newData]);
+            setPage(page-1);
         }catch(error){
             console.error(error)
+        }finally{
+            setLoading(false)
         }
     }
     
+    const renderFooter = () => {
+        if (!loading) return null;
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#dcf285" />
+            </View>
+        );
+    };
+
     useEffect(()=>{
         fetchRickMorty()
     },[])
@@ -48,7 +66,10 @@ const Home = ({navigation}) => {
                 <FlatList
                 data={rickMorty}
                 renderItem={({item}) => <ReturnValue content={item}/>}
-                keyExtractor={(item) => item.id.toString()}
+                // keyExtractor={(item) => item.id.toString()}
+                onEndReached={fetchRickMorty}
+                onEndReachedThreshold={0.5}
+                ListFooterComponent={renderFooter}
                 />
             </View>
         </SafeAreaView>
@@ -93,13 +114,16 @@ const styles = StyleSheet.create({
         backgroundColor:"#4a85a1",
         justifyContent:'center',
         flexDirection:'row'
-
     },
     boxBodyInternal:{
         justifyContent:'center',
         width:250,
         backgroundColor:'#dcf285',
         borderRadius:20,
-    }
+    },
+    loadingContainer: {
+        alignItems: 'center',
+        paddingVertical: 380,
+    },
 })
 export default Home;
