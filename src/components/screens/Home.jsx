@@ -6,7 +6,6 @@ const Home = ({navigation}) => {
     const [rickMorty,setRickMorty] = useState([])
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
-    const characterPerPage = 3
 
     const fetchRickMorty = async () =>{
         try{
@@ -66,7 +65,7 @@ const Home = ({navigation}) => {
                 <FlatList
                 data={rickMorty}
                 renderItem={({item}) => <ReturnValue content={item}/>}
-                // keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.id.toString()}
                 onEndReached={fetchRickMorty}
                 onEndReachedThreshold={0.5}
                 ListFooterComponent={renderFooter}
